@@ -31,5 +31,5 @@ def appointments():
         city = request.form['city']
         state = request.form['state']
         new_text = checkAvailability.get_vacc_by_city(city, state)
-        return render_template('apptResults.html', old_text=city+,state, new_text=new_text)
+        return render_template('apptResults.html', old_text=city+", " + state, new_text=new_text)
     return render_template('appt.html', title='Home')
