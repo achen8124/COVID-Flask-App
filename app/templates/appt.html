@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, Welcome to the xkcd Substitutor!</h1>
+    <div><p>Enter some text and substitutions to make:</p></div>
+    <form method=post>
+        <textarea name=textarea_input rows="4" cols="50"> 
+Our candidate insists on a global solution to this pressing problem. 
+        </textarea> &nbsp;&nbsp;
+        <input type=submit value=Submit>
+        <br><br>
+        <input type=text name=original_text1 value="candidate">  &nbsp;&nbsp; 
+        <input type=text name=replacement_text1 value="airbender">
+        <br>
+        <input type=text name=original_text2 value="global">  &nbsp;&nbsp; 
+        <input type=text name=replacement_text2 value="spherical">
+        <br>
+        <input type=text name=original_text3 value="pressing">  &nbsp;&nbsp; 
+        <input type=text name=replacement_text3 value="calculus">
+    </form>
+{% endblock %}
