@@ -13,7 +13,7 @@ from werkzeug.datastructures import FileStorage
 
 
 from app import checkAvailability  # our Python functions are in checkAvailability.py
-
+from app import emailAvailability
 
 # Home page, renders the index.html template
 @app.route('/index')
@@ -30,6 +30,8 @@ def appointments():
         # city and state (their replacements)
         city = request.form['city']
         state = request.form['state']
+        receiver_email = request.form['email']
         new_text = checkAvailability.get_vacc_by_city(city, state)
+        send_availability_email(receiver_email, new_text)
         return render_template('apptResults.html', old_text=city+", " + state, new_text=new_text)
     return render_template('appt.html', title='Home')
