@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Your old text:</h1>
-    <div><p>{{old_text}}</p></div>
-    <h2>Your translated text:</h2>
+    <h1>Location:</h1>
+    <div><p>{{city}}, {{state}}</p></div>
+    <h2>Available Appointments:</h2>
     <div><p>{{new_text|safe}}</p></div>
+
+    <!-- <div>Email this info to you: <a href="/email_info">Click here!</a></div> -->
+    <p>Input your email here if you'd like this information to be emailed to you:</p>
+    <form action="/email_info/{{city}}/{{state}}" method=post>
+        <input type=text name=email>
+        <input type=submit value=Submit>
+    </form>
 {% endblock %}

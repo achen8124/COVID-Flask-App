@@ -30,8 +30,19 @@ def appointments():
         # city and state (their replacements)
         city = request.form['city']
         state = request.form['state']
-        receiver_email = request.form['email']
+        # receiver_email = request.form['email']
         new_text = checkAvailability.get_vacc_by_city(city, state)
-        send_availability_email(receiver_email, new_text)
-        return render_template('apptResults.html', old_text=city+", " + state, new_text=new_text)
+        # send_availability_email(receiver_email, new_text)
+        return render_template('apptResults.html', city=city, state=state, new_text=new_text)
     return render_template('appt.html', title='Home')
+
+
+@app.route('/email_info/<city>/<state>',methods=['GET','POST'])
+def email_info(city = "San Diego", state = "CA"):
+    if request.method == 'POST':
+        receiver_email = request.form['email']
+        # TODO: maybe replace this after
+        new_text = checkAvailability.get_vacc_by_city(city, state)
+        emailAvailability.send_availability_email(receiver_email, city, state, new_text)
+        return render_template('emailedResults.html', city=city, state=state, new_text=new_text, email=receiver_email)
+    return render_template('emailedResults.html', title='Home')

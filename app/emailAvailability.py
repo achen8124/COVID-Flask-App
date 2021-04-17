@@ -3,19 +3,21 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
-def send_availability_email ( receiver_email, new_text ): 
+def send_availability_email ( receiver_email, city, state, new_text ): 
   current_date = str(datetime.now()).split(" ")[0]
+  short_date = current_date.split("-")[1] + "/" + current_date.split("-")[2]
   sender_email = "kextra12345@gmail.com"
-  password = input("Type your password and press enter:")
+  # password = input("Type your password and press enter:")
+  # password = 
   
   message = MIMEMultipart("alternative")
-  message["Subject"] = f"[{current_date[5:]}] COVID Appointment Availabilities" 
+  message["Subject"] = f"[{short_date}] COVID Appointment Openings" 
   message["From"] = "COVID-19 Vaccine Updates from Andrea and Katie"
   message["To"] = receiver_email
 
   # Create the plain-text and HTML version of your message
   text = f"""\
-  Covid Vaccine Availabilities: 
+  Covid Vaccine Availabilities for {city}, {state}: 
   Sent on: {current_date}
 
   {new_text}"""
@@ -23,7 +25,7 @@ def send_availability_email ( receiver_email, new_text ):
   html = f"""\
   <html>
     <body>
-      <h3>Covid Vaccine Availabilities</h3>
+      <h3>Covid Vaccine Availabilities for {city}, {state}</h3>
         <p>Sent on: {current_date}<br>
         {new_text}
       </p>
