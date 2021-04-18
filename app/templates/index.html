@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, Welcome to an Example Flask App!</h1>
-    <div><p>Click below to get some Covid Vaccine appointment times!</p></div>
-    <div>Check Appointment By City: <a href="/appointments">Check here!</a></div>
+    <h1>Welcome to Appointment Spotter!</h1>
+    <div><p>Click below to find COVID vaccine appointment openings!</p></div>
+    <div><form><button formaction="{{url_for('appointments')}}">Check for appointments by city</button></form></div>
 {% endblock %}

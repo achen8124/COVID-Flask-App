@@ -12,8 +12,14 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 
 
-from app import checkAvailability  # our Python functions are in checkAvailability.py
+from app import checkAvailability  
 from app import emailAvailability
+
+STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", \
+          "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", \
+          "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", \
+          "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", \
+          "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 
 # Home page, renders the index.html template
 @app.route('/index')
@@ -34,7 +40,7 @@ def appointments():
         new_text = checkAvailability.get_vacc_by_city(city, state)
         # send_availability_email(receiver_email, new_text)
         return render_template('apptResults.html', city=city, state=state, new_text=new_text)
-    return render_template('appt.html', title='Home')
+    return render_template('appt.html', stateList=STATES, title='Home')
 
 
 @app.route('/email_info/<city>/<state>',methods=['GET','POST'])
