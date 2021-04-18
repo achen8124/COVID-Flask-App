@@ -49,7 +49,7 @@ def get_vacc_by_city( city, state ):
         if (feature_city != None) and (feature_city.upper() == city) and \
             feature["properties"]["appointments_available"]:
             available.append(format_appt_info(feature["properties"]))
-    return available
+    return format_results( available )
 
 def format_appt_times( times ):
     '''Takes in a list of appt times and formats them into string '''
