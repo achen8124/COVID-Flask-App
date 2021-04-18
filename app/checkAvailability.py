@@ -13,7 +13,7 @@ def get_vacc_page( state ):
         return data          
     else:
         print("returning {}")
-        return {}
+        return {"error": "State not found"}
 
 def format_appt_info ( appt ): 
     """
@@ -39,7 +39,10 @@ def get_vacc_by_city( city, state ):
     appointments
     """
     city = city.upper()
-    all_appts = get_vacc_page( state )["features"]
+    appts_by_state = get_vacc_page(state)
+    if "error" in appts_by_state:
+        return []
+    all_appts = appts_by_state["features"]
     available = []
     for feature in all_appts: 
         feature_city = feature["properties"]["city"]
@@ -48,6 +51,57 @@ def get_vacc_by_city( city, state ):
             available.append(format_appt_info(feature["properties"]))
     return available
 
+def format_appt_times( times ):
+    '''Takes in a list of appt times and formats them into string '''
+    if times == []:
+        return "n/a"
+    formatted_times = ""
+    for time in times: 
+        orig = time["time"]
+        date = orig.split("T")[0]
+        time = orig.split("T")[1]
+        time = time.split(".")[0]
+        formatted_times += date + " (" + time + "), "
+    return formatted_times[:-1]
+
+def format_appointment( appt ):
+    '''Takes in a dictionary as input, returns
+    string of items in list format'''
+    output = ""
+    output += "url: "
+    output += appt["url"] + "\n"
+    output += "provider: "
+    output += appt["provider"] + "\n"
+    output += "address: "
+    output += appt["address"] + "\n"
+    output += "postal code: "
+    output += appt["postal_code"] + "\n"
+    output += "appointments: "
+    output += format_appt_times(appt["appointments"]) + "\n"
+    output += "vaccine types: "
+    if "unknown" in appt["appointment_vaccine_types"]: 
+        output += "unknown\n"
+    else: 
+        if "pfizer" in appt["appointment_vaccine_types"]: 
+            output += "pfizer "
+        if "moderna" in appt["appointment_vaccine_types"]: 
+            output += "moderna "
+        output += "\n"
+    output += "2nd dose only: "
+    output += str(appt["appointments_available_2nd_dose_only"])
+    return output
+
+def format_results( appts ): 
+    '''Takes in a list of dictionaries as input, formats
+    all appointments and returns string''' 
+    if appts == []:
+        return "n/a"
+    output = ""
+    for appt in appts:
+        output += format_appointment(appt)
+        output += "\n\n"
+    return output
 
 # print(get_vacc_page( "CA" ))
-print(get_vacc_by_city( "Claremont","CA" ))
+appts = get_vacc_by_city( "hello","california" )
+print(format_results(appts))
