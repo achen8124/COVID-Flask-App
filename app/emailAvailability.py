@@ -1,14 +1,16 @@
 import smtplib, ssl
+import getpass
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
+
+password = getpass.getpass(prompt='Password: ', stream=None) 
 
 def send_availability_email ( receiver_email, city, state, new_text ): 
   current_date = str(datetime.now()).split(" ")[0]
   short_date = current_date.split("-")[1] + "/" + current_date.split("-")[2]
   sender_email = "kextra12345@gmail.com"
   # password = input("Type your password and press enter:")
-  # password = 
   
   message = MIMEMultipart("alternative")
   message["Subject"] = f"[{short_date}] COVID Appointment Openings" 

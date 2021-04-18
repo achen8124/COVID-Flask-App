@@ -69,24 +69,30 @@ def format_appointment( appt ):
     string of items in list format'''
     output = ""
     output += "url: "
-    output += appt["url"] + "\n"
+    output += appt["url"] + "<br>"
     output += "provider: "
-    output += appt["provider"] + "\n"
+    output += appt["provider"] + "<br>"
     output += "address: "
-    output += appt["address"] + "\n"
+    if appt["address"] == None:
+        output += "n/a<br>"
+    else: 
+        output += appt["address"] + "<br>"
     output += "postal code: "
-    output += appt["postal_code"] + "\n"
+    if appt["postal_code"] == None: 
+        output += "n/a<br>"
+    else:
+        output += appt["postal_code"] + "<br>"
     output += "appointments: "
-    output += format_appt_times(appt["appointments"]) + "\n"
+    output += format_appt_times(appt["appointments"]) + "<br>"
     output += "vaccine types: "
     if "unknown" in appt["appointment_vaccine_types"]: 
-        output += "unknown\n"
+        output += "unknown<br>"
     else: 
         if "pfizer" in appt["appointment_vaccine_types"]: 
             output += "pfizer "
         if "moderna" in appt["appointment_vaccine_types"]: 
             output += "moderna "
-        output += "\n"
+        output += "<br>"
     output += "2nd dose only: "
     output += str(appt["appointments_available_2nd_dose_only"])
     return output
@@ -99,9 +105,5 @@ def format_results( appts ):
     output = ""
     for appt in appts:
         output += format_appointment(appt)
-        output += "\n\n"
+        output += "<br><br>"
     return output
-
-# print(get_vacc_page( "CA" ))
-appts = get_vacc_by_city( "hello","california" )
-print(format_results(appts))
