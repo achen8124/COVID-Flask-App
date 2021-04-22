@@ -68,40 +68,34 @@ def format_appointment( appt ):
     '''Takes in a dictionary as input, returns
     string of items in list format'''
     output = ""
-    output += "Provider: "
-    output += appt["provider"] + "<br>"
-    
-    output += "URL: "
+    output += "url: "
     output += appt["url"] + "<br>"
-    
-    output += "Address: "
+    output += "provider: "
+    output += appt["provider"] + "<br>"
+    output += "address: "
     if appt["address"] == None:
         output += "n/a<br>"
     else: 
         output += appt["address"] + "<br>"
-    
-    output += "Postal code: "
+    output += "postal code: "
     if appt["postal_code"] == None: 
         output += "n/a<br>"
     else:
         output += appt["postal_code"] + "<br>"
-    
-    output += "Appointments: "
-    if appt["appointments"] != "n/a":
-        output += format_appt_times(appt["appointments"]) + "<br>"
-    else: 
-        output += "please check the provider's website for more information"
-    
-    output += "Vaccine types: "
+    output += "appointments: "
+    output += format_appt_times(appt["appointments"]) + "<br>"
+    output += "vaccine types: "
     if "unknown" in appt["appointment_vaccine_types"]: 
-        output += "Unknown<br>"
+        output += "unknown<br>"
     else: 
         if "pfizer" in appt["appointment_vaccine_types"]: 
-            output += "Pfizer "
+            output += "pfizer "
         if "moderna" in appt["appointment_vaccine_types"]: 
-            output += "Moderna "
+            output += "moderna "
         output += "<br>"
-    
+    output += "2nd dose only: "
+    output += str(appt["appointments_available_2nd_dose_only"])
+    return output
 
 def format_results( appts ): 
     '''Takes in a list of dictionaries as input, formats
@@ -110,9 +104,6 @@ def format_results( appts ):
         return "n/a"
     output = ""
     for appt in appts:
-        if appt != None:
-            output += "<div class='info-block'>"
-            print(format_appointment(appt))
-            output += format_appointment(appt)
-            output += "</div><br>"
+        output += format_appointment(appt)
+        output += "<br><br>"
     return output
