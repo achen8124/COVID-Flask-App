@@ -31,14 +31,9 @@ def index():
 @app.route('/appointments',methods=['GET','POST'])
 def appointments():
     if request.method == 'POST':
-        # # larger textarea
-        # old_textarea = request.form['textarea_input']
-        # city and state (their replacements)
         city = request.form['city']
         state = request.form['state']
-        # receiver_email = request.form['email']
         new_text = checkAvailability.get_vacc_by_city(city, state)
-        # send_availability_email(receiver_email, new_text)
         return render_template('apptResults.html', city=city, state=state, new_text=new_text)
     return render_template('appt.html', stateList=STATES, title='Home')
 
