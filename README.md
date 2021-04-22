@@ -12,13 +12,20 @@ To run, type the following in the terminal:
 - [X] Add a dropdown menu for the states (Andrea)
 - [X] Modify check availability function to catch when city/state are not valid (Katie)
 - [X] Parsing the appointment info (Katie)
+- [X] Use getpass to email without leaving the password in the code
+- [X] Add basic CSS to the pages 
 
 ## To do before presentation: 
-- [ ] Figure out how to email without leaving the password in the code (Katie)
-- [ ] Add CSS to the pages 
 - [ ] Fix wording on the pages (Andrea)
-- [ ] Make home page better
-- [ ] Format a nav bar
+- [ ] Reformat apptResults.html with CSS (Andrea)
+- [ ] Think of things to fill home page with (Katie)
+- [ ] Format form for appt.html (Katie)
+- [ ] Look into fonts and color theme (Katie)
+- [ ] Add buttons to nav bar (Andrea)
+
+## To Do before turning in: 
+- [ ] Tell user that invalid city / state pair was entered if no matches for city come up or blank state entered
 
 ## Extra: 
 - [ ] Search by zip code (?)
+- [ ] Make website more accessible
