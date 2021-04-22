@@ -112,6 +112,7 @@ def format_results( appts ):
     for appt in appts:
         if appt != None:
             output += "<div class='info-block'>"
+            print(format_appointment(appt))
             output += format_appointment(appt)
             output += "</div><br>"
     return output

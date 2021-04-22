@@ -4,8 +4,9 @@
     <h1>Hi, Welcome to Appointment Spotter!</h1>
     <div><p>Input your desired city and state (i.e. San Diego, CA).</p></div>
     <form method=post>
-        <input type=text name =city>
+        <input type=text name=city placeholder="ex: Los Angeles">
         <select name="state" id="state">
+            <option value=""></option>
             {% for i in range(50) %}
             <option value={{stateList[i]}}>{{stateList[i]}}</option>
             {% endfor %}
