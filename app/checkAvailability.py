@@ -83,18 +83,20 @@ def format_appointment( appt ):
     else:
         output += appt["postal_code"] + "<br>"
     output += "appointments: "
-    output += format_appt_times(appt["appointments"]) + "<br>"
+    times = format_appt_times(appt["appointments"])
+    if times != "n/a":
+        output += times + "<br>"
+    else:
+        output += "Please check the provider's website for more information!<br>"
     output += "vaccine types: "
     if "unknown" in appt["appointment_vaccine_types"]: 
-        output += "unknown<br>"
+        output += "Unknown<br>"
     else: 
         if "pfizer" in appt["appointment_vaccine_types"]: 
-            output += "pfizer "
+            output += "Pfizer "
         if "moderna" in appt["appointment_vaccine_types"]: 
-            output += "moderna "
+            output += "Moderna "
         output += "<br>"
-    output += "2nd dose only: "
-    output += str(appt["appointments_available_2nd_dose_only"])
     return output
 
 def format_results( appts ): 
@@ -104,6 +106,7 @@ def format_results( appts ):
         return "n/a"
     output = ""
     for appt in appts:
+        output += "<div>"
         output += format_appointment(appt)
-        output += "<br><br>"
+        output += "</div><br>"
     return output
