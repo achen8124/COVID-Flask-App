@@ -3,5 +3,11 @@
 {% block content %}
     <h1>Welcome to Appointment Spotter!</h1>
     <div><p>Click below to find COVID vaccine appointment openings!</p></div>
-    <div><form><button formaction="{{url_for('appointments')}}">Check for appointments by city</button></form></div>
+    <div>   
+        <form>
+            <button formaction="{{url_for('appointments')}}">
+            Check for appointments by city
+            </button>
+        </form>
+    </div>
 {% endblock %}
