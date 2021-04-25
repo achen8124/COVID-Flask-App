@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to Appointment Spotter!</h1>
-    <div><p>Click below to find COVID vaccine appointment openings!</p></div>
+    <p class=title>Welcome to Appointment Spotter!</p>
+    <p>Click below to find COVID vaccine appointment openings!</p>
+    <br>
     <div>   
         <form>
             <button formaction="{{url_for('appointments')}}">

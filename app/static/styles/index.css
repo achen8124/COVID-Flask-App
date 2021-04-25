@@ -1,10 +1,27 @@
 body {
-    font-family: 'Helvetica', sans-serif;
+    font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
     text-align: center;
 }
 
+.title {
+    font-size: 40px;
+}
+
+p {
+    font-size: 18px;
+}
+
+input[type=text], input[type=submit], select[name="state"], input[type=email]
+{
+    padding: 10px 20px 10px 20px;
+    border-radius: 9999px 9999px 9999px 9999px; 
+    font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
+    border-width: 1px;
+    border-color: gray;
+}
+
 .navbar {
-    background-color: #2850a8;
+    background-color: #f76c6c;
     color: white;
     padding: 16px 32px;
     margin-left: -10px;
@@ -20,8 +37,10 @@ body {
 
 button {
     background-color: black;
+    font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
     color: white;
     padding: 16px 32px;
+    border-radius: 50px 50px 50px 50px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
