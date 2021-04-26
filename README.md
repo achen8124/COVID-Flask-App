@@ -20,9 +20,9 @@ To run, type the following in the terminal:
 - [X] Fix wording on the pages (Andrea)
 - [X] Add tables to apptResults.html (Andrea)
 - [X] Add tabs to nav bar (Andrea)
+- [X] Add image from Canva to home page & appt page (Katie)
 
 ## To do before presentation: 
-- [ ] Add image from Canva to home page & appt page (Katie)
 - [ ] Start presentation (Katie & Andrea)
 
 ## To Do before turning in: 
