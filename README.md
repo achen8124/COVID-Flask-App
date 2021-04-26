@@ -14,15 +14,16 @@ To run, type the following in the terminal:
 - [X] Parsing the appointment info (Katie)
 - [X] Use getpass to email without leaving the password in the code
 - [X] Add basic CSS to the pages 
+- [X] Format form for appt.html (Katie)
+- [X] Look into fonts and color theme (Katie)
+- [X] Reformat apptResults.html with CSS (Andrea)
+- [X] Fix wording on the pages (Andrea)
 
 ## To do before presentation: 
-- [ ] Fix wording on the pages (Andrea)
-- [ ] Reformat apptResults.html with CSS (Andrea)
-- [ ] Think of things to fill home page with (Katie)
-- [ ] Format form for appt.html (Katie)
-- [ ] Look into fonts and color theme (Katie)
+- [ ] Add image from Canva to home page & appt page (Katie)
 - [ ] Add buttons to nav bar (Andrea)
-- [ ] Start presentation (Katie)
+- [ ] Add tables to apptResults.html (Andrea)
+- [ ] Start presentation (Katie & Andrea)
 
 ## To Do before turning in: 
 - [ ] Tell user that invalid city / state pair was entered if no matches for city come up or blank state entered

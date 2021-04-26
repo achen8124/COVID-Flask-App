@@ -1,6 +1,7 @@
 body {
     font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
     text-align: center;
+    background-color: #eae7dc43;
 }
 
 .title {
@@ -14,10 +15,15 @@ p {
 input[type=text], input[type=submit], select[name="state"], input[type=email]
 {
     padding: 10px 20px 10px 20px;
-    border-radius: 9999px 9999px 9999px 9999px; 
+    border-radius: 10px; 
     font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
     border-width: 1px;
     border-color: gray;
+    background-color: #eae7dc43;
+}
+
+input[type=submit]:hover {
+    background-color: #a8d0e6;
 }
 
 .navbar {
@@ -36,11 +42,11 @@ input[type=text], input[type=submit], select[name="state"], input[type=email]
 }
 
 button {
-    background-color: black;
+    background-color:  #24305e;
     font-family: Futura, system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji';
     color: white;
     padding: 16px 32px;
-    border-radius: 50px 50px 50px 50px; 
+    border-radius: 10px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -51,17 +57,40 @@ button {
 }
   
 button:hover {
-    background-color: #5e5e5e;
-    color: white;
+    background-color: #a8d0e6;
+    color: black;
 }
 
 .info {
-    background-color: rgb(253, 182, 156);
+    margin-left: 10%;
+    margin-right: 10%;
     text-align: left;
     padding: 15px;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 10px;
+    background-color: #a8d0e637;
+    border-color: #a8d0e6;
+    /* background-color: rgba(253, 182, 156, 0.365); */
+    /* border-color: rgb(253, 182, 156); */
 }
 
 h3 {
     padding: 0;
     margin: 0;
+}
+
+#homepage {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 50px;
+    margin-top: 135px;
+    border-style: solid;
+    border-width: 7px;
+    border-color: #24305e;
+    /* background-color: #a8d0e637; */
+}
+
+#appt {
+    margin-top: 130px;
 }

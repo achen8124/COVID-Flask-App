@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Location:</h1>
-    <div><p>{{city}}, {{state}}</p></div>
-    <h2>Available Appointments:</h2>
-    <div><p>{{new_text|safe}}</p></div>
+    <h2>Available Appointments for {{city}}, {{state}}:</h2>
 
     <!-- <div>Email this info to you: <a href="/email_info">Click here!</a></div> -->
     <p>Input your email here if you'd like this information to be emailed to you:</p>
@@ -12,4 +9,6 @@
         <input type=email name=email>
         <input type=submit value=Submit>
     </form>
+
+    <div><p>{{new_text|safe}}</p></div>
 {% endblock %}
