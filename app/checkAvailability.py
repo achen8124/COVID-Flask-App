@@ -64,31 +64,43 @@ def format_appt_times( times ):
         formatted_times += date + " (" + time + "), "
     return formatted_times[:-1]
 
+def format_provider( provider ):
+    '''Takes in a string as input, replaces _ with a space and
+    capitalizes the string'''
+    if '_' in provider:
+        words = [x.capitalize() for x in provider.split('_')]
+        return " ".join(words)
+    elif " " in provider:
+        words = [x.capitalize() for x in provider.split()]
+        return " ".join(words)
+    elif provider == 'riteaid':
+        return 'RiteAid'
+    elif provider == 'cvs':
+        return 'CVS'
+    else:
+        return provider.capitalize()
+
+def format_address( address ):
+    '''Takes in a string as input, capitalizes the string'''
+    words = [x.capitalize() for x in address.split()]
+    return " ".join(words)
+
 def format_appointment( appt ):
     '''Takes in a dictionary as input, returns
     string of items in list format'''
     output = ""
-    output += "url: "
-    output += appt["url"] + "<br>"
-    output += "provider: "
-    output += appt["provider"] + "<br>"
-    output += "address: "
+    output += "<h3>" + format_provider(appt["provider"]) + "</h3>"
+    output += "<a href='"
+    output += appt["url"] + "'>Click here for provider's website</a><br>"
+    output += "Address: "
     if appt["address"] == None:
         output += "n/a<br>"
     else: 
-        output += appt["address"] + "<br>"
-    output += "postal code: "
-    if appt["postal_code"] == None: 
-        output += "n/a<br>"
-    else:
+        output += format_address(appt["address"])
+        output += ", SPAM "
+    if appt["postal_code"] != None: 
         output += appt["postal_code"] + "<br>"
-    output += "appointments: "
-    times = format_appt_times(appt["appointments"])
-    if times != "n/a":
-        output += times + "<br>"
-    else:
-        output += "Please check the provider's website for more information!<br>"
-    output += "vaccine types: "
+    output += "Vaccine types: "
     if "unknown" in appt["appointment_vaccine_types"]: 
         output += "Unknown<br>"
     else: 
@@ -97,7 +109,19 @@ def format_appointment( appt ):
         if "moderna" in appt["appointment_vaccine_types"]: 
             output += "Moderna "
         output += "<br>"
+    output += "Appointments: "
+    times = format_appt_times(appt["appointments"])
+    if times != "n/a":
+        output += times + "<br>"
+    else:
+        output += "Please check the provider's website for more information!<br>"
     return output
+
+# def format_appt_table( times ):
+#     '''Takes in a list of appointments and formats it in a HTML table,
+#     returns a string'''
+#     output = ""
+
 
 def format_results( appts ): 
     '''Takes in a list of dictionaries as input, formats
@@ -106,7 +130,7 @@ def format_results( appts ):
         return "n/a"
     output = ""
     for appt in appts:
-        output += "<div>"
+        output += "<div class='info'>"
         output += format_appointment(appt)
         output += "</div><br>"
     return output

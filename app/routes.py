@@ -33,7 +33,9 @@ def appointments():
     if request.method == 'POST':
         city = request.form['city']
         state = request.form['state']
+        location = city + ", " + state
         new_text = checkAvailability.get_vacc_by_city(city, state)
+        new_text = new_text.replace("SPAM", location)
         return render_template('apptResults.html', city=city, state=state, new_text=new_text)
     return render_template('appt.html', stateList=STATES, title='Home')
 
