@@ -109,18 +109,57 @@ def format_appointment( appt ):
         if "moderna" in appt["appointment_vaccine_types"]: 
             output += "Moderna "
         output += "<br>"
-    output += "Appointments: "
+    output += "Appointments:<br><br>"
     times = format_appt_times(appt["appointments"])
     if times != "n/a":
-        output += times + "<br>"
+        output += format_appt_table(times, appt["url"])
     else:
         output += "Please check the provider's website for more information!<br>"
     return output
 
-# def format_appt_table( times ):
-#     '''Takes in a list of appointments and formats it in a HTML table,
-#     returns a string'''
-#     output = ""
+def format_appt_table( appts, link ):
+    '''Takes in a list of appointments and formats it in a HTML table,
+    returns a string'''
+    output = "<table><tr id='cols'>"
+    times = appts.split(", ")
+    used = {}
+    hours = {'01':"1 AM", '02':"2 AM", '03':"3 AM", '04':"4 AM", '05':"5 AM", '06':"6 AM",
+             '07':"7 AM", '08':"8 AM", '09':"9 AM", '10':"10 AM", '11':"11 AM", '12':"12 PM",
+             '13':"1 PM", '14':"2 PM", '15':"3 PM", '16':"4 PM", '17':"5 PM", '18':"6 PM",
+             '19':"7 PM", '20':"8 PM", '21':"9 PM", '22':"10 PM", '23':"11 PM", '24':"12 AM"}
+
+    for appt in times:
+        day = appt[:10]
+        time = appt[12:17]
+        if day not in used:
+            used[day] = [time]
+            output += "<th>" + day[5:].replace('-', '/') + "</th>"
+        else:
+            used[day] += [time]
+    output += "</tr>"
+
+    days = list(used.keys())
+    empty = [False] * len(days)
+    while not all(empty):
+        output += "<tr>"
+        for i in range(len(days)):
+            if used[days[i]] == []:
+                empty[i] = True
+                output += "<td></td>"
+            else:
+                currTime = used[days[i]][0]
+                hour = hours[currTime[:2]]
+                minute = currTime[2:]
+                hour_split = hour.split()
+
+                finalTime = hour_split[0] + minute + " " +  hour_split[1]
+                output += "<td><a href='" + link + "' id='time'>" + finalTime +"</a></td>"
+                used[days[i]] = used[days[i]][1:]
+        output += "</tr>"
+    extra = 9 + 9 * len(days)
+    output = output[:-extra]
+    output += "</table>"
+    return output
 
 
 def format_results( appts ): 
