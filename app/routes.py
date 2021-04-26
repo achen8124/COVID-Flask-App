@@ -37,7 +37,7 @@ def appointments():
         new_text = checkAvailability.get_vacc_by_city(city, state)
         new_text = new_text.replace("SPAM", location)
         return render_template('apptResults.html', city=city, state=state, new_text=new_text)
-    return render_template('appt.html', stateList=STATES, title='Home')
+    return render_template('appt.html', stateList=STATES, title='by city')
 
 
 @app.route('/email_info/<city>/<state>',methods=['GET','POST'])
@@ -48,4 +48,4 @@ def email_info(city = "San Diego", state = "CA"):
         new_text = checkAvailability.get_vacc_by_city(city, state)
         emailAvailability.send_availability_email(receiver_email, city, state, new_text)
         return render_template('emailedResults.html', city=city, state=state, new_text=new_text, email=receiver_email)
-    return render_template('emailedResults.html', title='Home')
+    return render_template('emailedResults.html', title='emailed')

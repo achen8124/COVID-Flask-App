@@ -26,7 +26,9 @@ input[type=submit]:hover {
     background-color: #a8d0e6;
 }
 
-.navbar {
+/* NAV BAR */
+
+/* .navbar {
     background-color: #24305e;
     color: white;
     padding: 16px 32px;
@@ -34,12 +36,39 @@ input[type=submit]:hover {
     margin-top: -10px;
     width: 100%;
     text-align: left;
-}
+} */
 
-#nav-home:link, #nav-home:visited{
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #24305e;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
     color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-}
+  }
+  
+  li a:hover, .active {
+    background-color: #a8d0e6;
+    color: black;
+  }
+
+
+/* BUTTONS */
 
 button {
     background-color:  #24305e;

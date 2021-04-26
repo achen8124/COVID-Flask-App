@@ -1,16 +1,22 @@
 <html>
     <head>
       <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
-      {% if title %}
+      {% if title == 'Home' %}
       <title>{{ title }} - Appointment Spotter</title>
       {% else %}
       <title>Welcome to Appointment Spotter</title>
       {% endif %}
     </head>
     <body>
-        <div class="navbar">
-          <a href="/index" id="nav-home">Home</a>
-        </div>
+          <ul>
+            {% if title == 'Home' %}
+            <li><a href="/index" class="active">Appointment Spotter</a></li>
+            <li><a href="/appointments">Search By City</a></li>
+            {% else %}
+            <li><a href="/index">Appointment Spotter</a></li>
+            <li><a href="/appointments" class="active">Search By City</a></li>
+            {% endif %}
+          </ul>
         {% block content %}{% endblock %}
     </body>
 </html>

@@ -18,11 +18,11 @@ To run, type the following in the terminal:
 - [X] Look into fonts and color theme (Katie)
 - [X] Reformat apptResults.html with CSS (Andrea)
 - [X] Fix wording on the pages (Andrea)
+- [X] Add tables to apptResults.html (Andrea)
 
 ## To do before presentation: 
 - [ ] Add image from Canva to home page & appt page (Katie)
 - [ ] Add buttons to nav bar (Andrea)
-- [ ] Add tables to apptResults.html (Andrea)
 - [ ] Start presentation (Katie & Andrea)
 
 ## To Do before turning in: 
