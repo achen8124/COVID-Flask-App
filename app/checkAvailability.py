@@ -57,11 +57,14 @@ def format_appt_times( times ):
         return "n/a"
     formatted_times = ""
     for time in times: 
-        orig = time["time"]
-        date = orig.split("T")[0]
-        time = orig.split("T")[1]
-        time = time.split(".")[0]
-        formatted_times += date + " (" + time + "), "
+        if 'time' in time:
+            orig = time["time"]
+            date = orig.split("T")[0]
+            time = orig.split("T")[1]
+            time = time.split(".")[0]
+            formatted_times += date + " (" + time + "), "
+        else: 
+            return "n/a"
     return formatted_times[:-1]
 
 def format_provider( provider ):
@@ -109,12 +112,12 @@ def format_appointment( appt ):
         if "moderna" in appt["appointment_vaccine_types"]: 
             output += "Moderna "
         output += "<br>"
-    output += "Appointments:<br><br>"
+    output += "Appointments:"
     times = format_appt_times(appt["appointments"])
     if times != "n/a":
-        output += format_appt_table(times, appt["url"])
+        output += "<br><br>" + format_appt_table(times, appt["url"])
     else:
-        output += "Please check the provider's website for more information!<br>"
+        output += " Please check the provider's website for more information!<br>"
     return output
 
 def format_appt_table( appts, link ):

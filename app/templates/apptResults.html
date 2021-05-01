@@ -2,13 +2,12 @@
 
 {% block content %}
     <h2>Available Appointments for {{city}}, {{state}}:</h2>
-
-    <!-- <div>Email this info to you: <a href="/email_info">Click here!</a></div> -->
+    <br>
     <p>Input your email here if you'd like this information to be emailed to you:</p>
     <form action="/email_info/{{city}}/{{state}}" method=post>
         <input type=email name=email>
         <input type=submit value=Submit>
     </form>
-
+    <br>
     <div><p>{{new_text|safe}}</p></div>
 {% endblock %}
