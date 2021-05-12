@@ -9,7 +9,10 @@
     <div>   
         <form>
             <button formaction="{{url_for('appointments')}}">
-            Check for appointments by city
+                Search by city
+            </button>
+            <button formaction="{{url_for('appointments_zip')}}">
+                Search by zip code
             </button>
         </form>
     </div>

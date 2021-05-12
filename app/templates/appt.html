@@ -2,6 +2,7 @@
 
 {% block content %}
     <div id = "appt">
+    {% if use_zip%}
     <h2>Input your desired city and state (i.e. San Diego, CA).</h2>
     <br>
     <form method=post>
@@ -15,6 +16,15 @@
         <input type=submit value=Submit>
     </form>
     <br><br>
+    {% else %}
+    <h2>Input your desired five-digit zip code (i.e. 91711).</h2>
+    <br>
+    <form method=post>
+        <input type=text pattern="[0-9]*" name=zip placeholder="ex: 91711">
+        <input type=submit value=Submit>
+    </form>
+    <br><br>
+    {% endif %}
     <img src="static/images/homepage.png" width=500px>
     </div>
 {% endblock %}

@@ -13,6 +13,7 @@ from werkzeug.datastructures import FileStorage
 
 
 from app import checkAvailability  
+# from app import zipAvailability 
 from app import emailAvailability
 
 STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", \
@@ -35,8 +36,7 @@ def appointments():
         state = request.form['state']
         location = city + ", " + state
         new_text = checkAvailability.get_vacc_by_city(city, state)
-        new_text = new_text.replace("SPAM", location)
-        return render_template('apptResults.html', city=city, state=state, new_text=new_text)
+        return render_template('apptResults.html', city=city, state=state, new_text=new_text, use_zip=False)
     return render_template('appt.html', stateList=STATES, title='by city')
 
 @app.route('/email_info/<city>/<state>',methods=['GET','POST'])
@@ -48,3 +48,12 @@ def email_info(city = "San Diego", state = "CA"):
         flash("We have successfully sent an email with all the appointment information!")
         return render_template('apptResults.html', city=city, state=state, new_text=new_text, email=receiver_email)
     return render_template('apptResults.html', title='emailed')
+
+# Appointments by zipcode page
+@app.route('/appointments_zip',methods=['GET','POST'])
+def appointments_zip():
+    if request.method == 'POST':
+        zip = request.form['zip']
+        new_text = checkAvailability.get_vacc_by_zip(zip)
+        return render_template('apptResults.html', zip=zip, new_text=new_text, use_zip=True)
+    return render_template('appt.html', stateList=STATES, title='by zip')
