@@ -39,13 +39,12 @@ def appointments():
         return render_template('apptResults.html', city=city, state=state, new_text=new_text)
     return render_template('appt.html', stateList=STATES, title='by city')
 
-
 @app.route('/email_info/<city>/<state>',methods=['GET','POST'])
 def email_info(city = "San Diego", state = "CA"):
     if request.method == 'POST':
         receiver_email = request.form['email']
-        # TODO: maybe replace this after
         new_text = checkAvailability.get_vacc_by_city(city, state)
         emailAvailability.send_availability_email(receiver_email, city, state, new_text)
-        return render_template('emailedResults.html', city=city, state=state, new_text=new_text, email=receiver_email)
-    return render_template('emailedResults.html', title='emailed')
+        flash("We have successfully sent an email with all the appointment information!")
+        return render_template('apptResults.html', city=city, state=state, new_text=new_text, email=receiver_email)
+    return render_template('apptResults.html', title='emailed')

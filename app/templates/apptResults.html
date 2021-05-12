@@ -4,7 +4,7 @@
     <h2>Available Appointments for {{city}}, {{state}}:</h2>
     <br>
     <p>Input your email here if you'd like this information to be emailed to you:</p>
-    <form action="/email_info/{{city}}/{{state}}" method=post>
+    <form action="/email_info/{{city}}/{{state}}" method=post onsubmit="return confirm ('We have sent an email with the appointment details to you!')">
         <input type=email name=email>
         <input type=submit value=Submit>
     </form>
