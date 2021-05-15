@@ -4,14 +4,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
-# password = getpass.getpass(prompt='Password: ', stream=None) 
 
-def send_availability_email ( receiver_email, city, state, new_text ): 
+def send_availability_email ( receiver_email, search_term, new_text ): 
   current_date = str(datetime.now()).split(" ")[0]
   short_date = current_date.split("-")[1] + "/" + current_date.split("-")[2]
   sender_email = "kextra12345@gmail.com"
   password = os.environ.get('password')
-  # password = input("Type your password and press enter:")
   
   message = MIMEMultipart("alternative")
   message["Subject"] = f"[{short_date}] COVID Appointment Openings" 
@@ -20,7 +18,7 @@ def send_availability_email ( receiver_email, city, state, new_text ):
 
   # Create the plain-text and HTML version of your message
   text = f"""\
-  Covid Vaccine Availabilities for {city}, {state}: 
+  Covid Vaccine Availabilities for {search_term}: 
   Sent on: {current_date}
 
   {new_text}"""
@@ -28,7 +26,7 @@ def send_availability_email ( receiver_email, city, state, new_text ):
   html = f"""\
   <html>
     <body>
-      <h3>Covid Vaccine Availabilities for {city}, {state}</h3>
+      <h3>Covid Vaccine Availabilities for {search_term}</h3>
         <p>Sent on: {current_date}<br>
         {new_text}
       </p>
@@ -52,5 +50,3 @@ def send_availability_email ( receiver_email, city, state, new_text ):
       server.sendmail(
           sender_email, receiver_email, message.as_string()
       )
-
-# send_availability_email ( "kextra12345@gmail.com", "TEST" )

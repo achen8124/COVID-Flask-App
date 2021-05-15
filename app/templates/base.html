@@ -14,7 +14,7 @@
             <li><a href="/index" class="active">Appointment Spotter</a></li>
             <li><a href="/appointments">Search By City</a></li>
             <li><a href="/appointments_zip">Search By Zip Code</a></li>
-            {% elif title == 'by city' %}
+            {% elif (title == 'by city' or not use_zip)%}
             <li><a href="/index">Appointment Spotter</a></li>
             <li><a href="/appointments" class="active">Search By City</a></li>
             <li><a href="/appointments_zip">Search By Zip Code</a></li>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if not use_zip%}
     <h2>Available Appointments for {{city}}, {{state}}:</h2>
     <br>
     <p>Input your email here if you'd like this information to be emailed to you:</p>
@@ -10,4 +11,15 @@
     </form>
     <br>
     <div><p>{{new_text|safe}}</p></div>
+{% else %}
+    <h2>Available Appointments for {{zipcode}}:</h2>
+    <br>
+    <p>Input your email here if you'd like this information to be emailed to you:</p>
+    <form action="/email_info_zip/{{zipcode}}" method=post onsubmit="return confirm ('We have sent an email with the appointment details to you!')">
+        <input type=email name=email>
+        <input type=submit value=Submit>
+    </form>
+    <br>
+    <div><p>{{new_text|safe}}</p></div>
+{% endif %}
 {% endblock %}
