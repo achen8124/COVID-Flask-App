@@ -183,6 +183,9 @@ def format_results( appts ):
 
 
 def get_state( zipcode ): 
+    '''
+    Converts zipcode (int) to state abbreviation (string)
+    '''
     if (zipcode >= 35000 and zipcode <= 36999) : 
         st = 'AL' 
     elif (zipcode >= 99500 and zipcode <= 99999) : 

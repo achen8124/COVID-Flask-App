@@ -13,7 +13,6 @@ from werkzeug.datastructures import FileStorage
 
 
 from app import checkAvailability  
-# from app import zipAvailability 
 from app import emailAvailability
 
 STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", \
@@ -39,6 +38,16 @@ def appointments():
         return render_template('apptResults.html', city=city, state=state, new_text=new_text, title='by city', use_zip=False)
     return render_template('appt.html', stateList=STATES, title='by city', use_zip=False)
 
+# Appointments by zipcode page
+@app.route('/appointments_zip',methods=['GET','POST'])
+def appointments_zip():
+    if request.method == 'POST':
+        zip = request.form['zip']
+        new_text = checkAvailability.get_vacc_by_zip(zip)
+        return render_template('apptResults.html', use_zip=True, zipcode=zip, new_text=new_text)
+    return render_template('appt.html', stateList=STATES, title='by zip', use_zip=True)
+
+# Email info for city/state searches
 @app.route('/email_info/<city>/<state>',methods=['GET','POST'])
 def email_info(city = "San Diego", state = "CA"):
     if request.method == 'POST':
@@ -49,6 +58,7 @@ def email_info(city = "San Diego", state = "CA"):
         return render_template('apptResults.html', use_zip=False, city=city, state=state, new_text=new_text, email=receiver_email)
     return render_template('apptResults.html', title='emailed', use_zip=False)
 
+# Email info for zipcode searches
 @app.route('/email_info_zip/<zipcode>',methods=['GET','POST'])
 def email_info_zip(zipcode="12345"):
     if request.method == 'POST':
@@ -57,12 +67,3 @@ def email_info_zip(zipcode="12345"):
         emailAvailability.send_availability_email(receiver_email, zipcode, new_text)
         return render_template('apptResults.html', use_zip=True, zipcode=zipcode, new_text=new_text, email=receiver_email)
     return render_template('apptResults.html', title='emailed', use_zip=True)
-
-# Appointments by zipcode page
-@app.route('/appointments_zip',methods=['GET','POST'])
-def appointments_zip():
-    if request.method == 'POST':
-        zip = request.form['zip']
-        new_text = checkAvailability.get_vacc_by_zip(zip)
-        return render_template('apptResults.html', use_zip=True, zipcode=zip, new_text=new_text)
-    return render_template('appt.html', stateList=STATES, title='by zip', use_zip=True)

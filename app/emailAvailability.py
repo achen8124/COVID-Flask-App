@@ -6,6 +6,11 @@ from datetime import datetime
 
 
 def send_availability_email ( receiver_email, search_term, new_text ): 
+  '''
+  Takes in receiver email, search term, and new_text (appointment availabilities)
+  and sends HTML email with appointment availabilities to receiver email from 
+  kextra12345@gmail.com
+  '''
   current_date = str(datetime.now()).split(" ")[0]
   short_date = current_date.split("-")[1] + "/" + current_date.split("-")[2]
   sender_email = "kextra12345@gmail.com"
